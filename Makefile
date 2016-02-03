@@ -9,7 +9,12 @@ all:
 	wget https://storage.googleapis.com/appengine-sdks/featured/appengine-java-sdk-1.9.27.zip
 	sudo unzip -qq -d /opt/google appengine-java-sdk-1.9.27.zip
 	rm appengine-java-sdk-1.9.27.zip
-	sudo apt-get install -y -qq openjdk-8-jdk
+	echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | sudo tee /etc/apt/sources.list.d/webupd8team-java.list
+	echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | sudo tee -a /etc/apt/sources.list.d/webupd8team-java.list
+	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
+	echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
+	sudo apt-get -y -qq update
+	sudo apt-get install -y -qq oracle-java8-installer
 	wget http://archive.apache.org/dist/maven/maven-3/3.3.3/binaries/apache-maven-3.3.3-bin.tar.gz
 	sudo tar -xzvf apache-maven-3.3.3-bin.tar.gz -C /opt
 	rm apache-maven-3.3.3-bin.tar.gz
