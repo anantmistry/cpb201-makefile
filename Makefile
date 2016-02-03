@@ -15,9 +15,7 @@ all:
 		echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
 		sudo apt-get -y -qq update
 		sudo apt-get install -y -qq oracle-java8-installer
-		wget http://archive.apache.org/dist/maven/maven-3/3.3.3/binaries/apache-maven-3.3.3-bin.tar.gz
-		sudo tar -xzvf apache-maven-3.3.3-bin.tar.gz -C /opt
-		rm apache-maven-3.3.3-bin.tar.gz
+		sudo apt-get install -y -qq maven
 		sudo bash -c 'echo M3=/opt/apache-maven-3.3.3 >> /etc/profile.d/env_vars.sh'
 		sudo bash -c 'echo M3_HOME=\$$M3 >> /etc/profile.d/env_vars.sh'
 		sudo bash -c 'echo PATH=\$$PATH:/opt/google/google_appengine:/usr/local/share/google/google-cloud-sdk/bin:\$$M3/bin >> /etc/profile.d/env_vars.sh'
